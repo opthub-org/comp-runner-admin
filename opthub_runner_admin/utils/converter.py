@@ -75,6 +75,29 @@ def decimal_to_float(value: object) -> object:
     return value
 
 
+def decimal_to_number(value: object) -> object:
+    """Convert decimal values to number values.
+
+    If the decimal value can be converted to int, it is converted to int.
+    Otherwise, it is converted to float.
+
+    Args:
+        value (object): The object consists of decimal values.
+
+    Returns:
+        object: The object consists of int and float values.
+    """
+    if isinstance(value, list):
+        return [decimal_to_number(v) for v in value]
+    if isinstance(value, dict):
+        return {k: decimal_to_number(v) for k, v in value.items()}
+    if isinstance(value, decimal.Decimal):
+        if value == value.to_integral():
+            return int(value)
+        return float(value)
+    return value
+
+
 def number_to_decimal(value: object) -> object:
     """Convert number values to decimal values.
 

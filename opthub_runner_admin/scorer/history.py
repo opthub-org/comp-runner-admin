@@ -6,7 +6,7 @@ from typing import TypedDict, cast
 
 from opthub_runner_admin.lib.dynamodb import DynamoDB
 from opthub_runner_admin.scorer.cache import Cache, Trial
-from opthub_runner_admin.utils.converter import decimal_to_float
+from opthub_runner_admin.utils.converter import decimal_to_number
 from opthub_runner_admin.utils.zfill import zfill
 
 
@@ -120,11 +120,11 @@ def load_up_to_trial_no(match_id: str, participant_id: str, trial_no: str, cache
 
             current: Trial = {
                 "trial_no": evaluation["TrialNo"],
-                "objective": decimal_to_float(evaluation["Objective"]),
-                "constraint": decimal_to_float(evaluation["Constraint"]),
-                "info": decimal_to_float(evaluation["Info"]),
+                "objective": decimal_to_number(evaluation["Objective"]),
+                "constraint": decimal_to_number(evaluation["Constraint"]),
+                "info": decimal_to_number(evaluation["Info"]),
                 "feasible": evaluation["Feasible"],
-                "score": cast(float, decimal_to_float(score["Value"])),
+                "score": cast(float, decimal_to_number(score["Value"])),
             }
             cache.append(current)
     except IndexError:

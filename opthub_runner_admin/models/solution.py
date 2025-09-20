@@ -4,7 +4,7 @@ from typing import TypedDict, cast
 
 from opthub_runner_admin.lib.dynamodb import DynamoDB, PrimaryKey
 from opthub_runner_admin.models.schema import SolutionSchema
-from opthub_runner_admin.utils.converter import decimal_to_float
+from opthub_runner_admin.utils.converter import decimal_to_number
 
 
 class Solution(TypedDict):
@@ -42,5 +42,5 @@ def fetch_solution_by_primary_key(
 
     # Decimal can not be used for evaluation, so convert it to float.
     return {
-        "variable": decimal_to_float(solution["Variable"]),
+        "variable": decimal_to_number(solution["Variable"]),
     }

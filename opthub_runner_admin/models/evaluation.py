@@ -4,7 +4,7 @@ from typing import TypedDict, cast
 
 from opthub_runner_admin.lib.dynamodb import DynamoDB, PrimaryKey
 from opthub_runner_admin.models.schema import FailedEvaluationSchema, SuccessEvaluationSchema
-from opthub_runner_admin.utils.converter import decimal_to_float, number_to_decimal
+from opthub_runner_admin.utils.converter import decimal_to_number, number_to_decimal
 
 
 class SuccessEvaluationCreateParams(TypedDict):
@@ -172,9 +172,9 @@ def fetch_success_evaluation_by_primary_key(
         "match_id": evaluation["MatchID"],
         "participant_id": evaluation["ParticipantID"],
         "trial_no": evaluation["TrialNo"],
-        "objective": decimal_to_float(evaluation["Objective"]),
-        "constraint": decimal_to_float(evaluation["Constraint"]),
-        "info": decimal_to_float(evaluation["Info"]),
+        "objective": decimal_to_number(evaluation["Objective"]),
+        "constraint": decimal_to_number(evaluation["Constraint"]),
+        "info": decimal_to_number(evaluation["Info"]),
         "feasible": evaluation["Feasible"],
     }
 
