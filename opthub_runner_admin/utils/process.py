@@ -23,7 +23,7 @@ def stop(ctx: click.Context, process_name: str) -> None:
     """
     flag_file = process_name + ".json"
     base_timeout = 2
-    retry_num = 3
+    retry_num = 4
 
     if not Path(flag_file).exists():
         click.echo(f"Flag file {process_name + '.json'} does not exist.")
@@ -159,6 +159,9 @@ def delete_flag_file(process_name: str) -> None:
                     raise Exception(msg)
                 Path(flag_file).unlink()
             msg = f"Successfully deleted {flag_file}."
+            LOGGER.info(msg)
+            Path(flag_file + ".lock").unlink(missing_ok=True)
+            msg = f"Successfully deleted {flag_file}.lock."
             LOGGER.info(msg)
             break
         except Timeout as e:
