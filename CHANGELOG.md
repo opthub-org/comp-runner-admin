@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.2...v0.4.3) (2025-09-20)
+
+
+### Bug Fixes
+
+* delete_lock_file when exiting ([5458079](https://github.com/opthub-org/comp-runner-admin/commit/5458079f0a7d360a37a446b04d89f40d686ec38d))
+
 ## [0.4.2](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.1...v0.4.2) (2025-09-20)
 
 
