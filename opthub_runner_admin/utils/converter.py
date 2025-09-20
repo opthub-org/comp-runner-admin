@@ -39,42 +39,6 @@ def float_to_json_float(value: object) -> object:  # noqa: PLR0911
     return value
 
 
-def decimal_to_int(value: object) -> object:
-    """Convert decimal values to int values.
-
-    Args:
-        value (object): The object consists of decimal values.
-
-    Returns:
-        object:  The object consists of int values.
-    """
-    if isinstance(value, list):
-        return [decimal_to_int(v) for v in value]
-    if isinstance(value, dict):
-        return {k: decimal_to_int(v) for k, v in value.items()}
-    if isinstance(value, decimal.Decimal):
-        return int(value)
-    return value
-
-
-def decimal_to_float(value: object) -> object:
-    """Convert decimal values to float values.
-
-    Args:
-        value (object): The object consists of decimal values.
-
-    Returns:
-        object: The object consists of float values.
-    """
-    if isinstance(value, list):
-        return [decimal_to_float(v) for v in value]
-    if isinstance(value, dict):
-        return {k: decimal_to_float(v) for k, v in value.items()}
-    if isinstance(value, decimal.Decimal):
-        return float(value)
-    return value
-
-
 def decimal_to_number(value: object) -> object:
     """Convert decimal values to number values.
 
