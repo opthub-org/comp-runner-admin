@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.1...v0.4.2) (2025-09-20)
+
+
+### Bug Fixes
+
+* Change decimal_to_float to decimal_to_number ([9029db5](https://github.com/opthub-org/comp-runner-admin/commit/9029db5ebce08e2ee85e587ef82154b58b90cd28))
+
 ## [0.4.1](https://github.com/opthub-org/opthub-runner-admin/compare/v0.4.0...v0.4.1) (2025-01-12)
 
 
