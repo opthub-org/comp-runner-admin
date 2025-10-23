@@ -75,9 +75,7 @@ def is_stop_flag_set(process_name: str) -> bool:
             with lock:  # noqa: SIM117
                 with Path(flag_file).open("r") as file:
                     stop_flag: bool = json.load(file)["stop_flag"]
-                    from time import sleep
 
-                    sleep(30)
         except Timeout as e:
             if attempt == retry_num:
                 msg = f"Failed to read {flag_file}."
@@ -113,9 +111,6 @@ def create_flag_file(process_name: str, force: bool) -> None:
             json.dump({"stop_flag": False}, file)
         msg = f"Successfully created {flag_file}."
         LOGGER.info(msg)
-        from time import sleep
-
-        sleep(10)
 
     elif Path(flag_file).exists() and not force:
         msg = f"Flag file {flag_file} already exists. Use --force to overwrite."
