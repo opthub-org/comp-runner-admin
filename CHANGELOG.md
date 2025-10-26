@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.5](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.4...v0.4.5) (2025-10-26)
+
+
+### Bug Fixes
+
+* デバッグ用のlogの追加 ([546797f](https://github.com/opthub-org/comp-runner-admin/commit/546797fefebf32c9b3903a6450de6e969e6051bd))
+
 ## [0.4.4](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.3...v0.4.4) (2025-10-23)
 
 
