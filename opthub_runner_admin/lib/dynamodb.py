@@ -1,11 +1,12 @@
 """This module provides a wrapper class for Amazon DynamoDB."""
 
 import logging
+from decimal import Rounded
 from typing import Any, TypedDict, cast
 
 import boto3
 from boto3.dynamodb.conditions import Key
-from boto3.dynamodb.types import TypeSerializer
+from boto3.dynamodb.types import DYNAMODB_CONTEXT, TypeSerializer
 from botocore.exceptions import BotoCoreError
 
 from opthub_runner_admin.models.schema import FlagSchema, Schema
@@ -73,8 +74,13 @@ class DynamoDB:
             Any | None: The item.
         """
         LOGGER.info("Get item from DynamoDB with key: %s", primary_key_value)
-        item: dict[str, Any] | None = self.table.get_item(Key=cast(dict[str, Any], primary_key_value)).get("Item")
-        return item
+        old_trap = DYNAMODB_CONTEXT.traps.get(Rounded, True)
+        DYNAMODB_CONTEXT.traps[Rounded] = False
+        try:
+            item: dict[str, Any] | None = self.table.get_item(Key=cast(dict[str, Any], primary_key_value)).get("Item")
+            return item
+        finally:
+            DYNAMODB_CONTEXT.traps[Rounded] = old_trap
 
     def is_exist(self, primary_key_value: PrimaryKey) -> bool:
         """Check if the item exists in DynamoDB.
@@ -146,27 +152,32 @@ class DynamoDB:
         items: list[dict[str, Any]] = []
         last_evaluated_key: dict[str, Any] | None = None
 
-        while True:
-            query_kwargs: dict[str, Any] = {
-                "KeyConditionExpression": Key("ID").eq(partition_key)
-                & Key("Trial").between(least_trial, greatest_trial),
-            }
+        old_trap = DYNAMODB_CONTEXT.traps.get(Rounded, True)
+        DYNAMODB_CONTEXT.traps[Rounded] = False
+        try:
+            while True:
+                query_kwargs: dict[str, Any] = {
+                    "KeyConditionExpression": Key("ID").eq(partition_key)
+                    & Key("Trial").between(least_trial, greatest_trial),
+                }
 
-            if last_evaluated_key:
-                query_kwargs["ExclusiveStartKey"] = last_evaluated_key
+                if last_evaluated_key:
+                    query_kwargs["ExclusiveStartKey"] = last_evaluated_key
 
-            if attributes:
-                query_kwargs["ProjectionExpression"] = ",".join([f"#attr{i}" for i in range(len(attributes))])
-                query_kwargs["ExpressionAttributeNames"] = {f"#attr{i}": attr for i, attr in enumerate(attributes)}
+                if attributes:
+                    query_kwargs["ProjectionExpression"] = ",".join([f"#attr{i}" for i in range(len(attributes))])
+                    query_kwargs["ExpressionAttributeNames"] = {f"#attr{i}": attr for i, attr in enumerate(attributes)}
 
-            response = self.table.query(**query_kwargs)
+                response = self.table.query(**query_kwargs)
 
-            # Append fetched items
-            items.extend(response.get("Items", []))
+                # Append fetched items
+                items.extend(response.get("Items", []))
 
-            # Check if there are more items to fetch
-            last_evaluated_key = response.get("LastEvaluatedKey")
-            if not last_evaluated_key:
-                break
+                # Check if there are more items to fetch
+                last_evaluated_key = response.get("LastEvaluatedKey")
+                if not last_evaluated_key:
+                    break
+        finally:
+            DYNAMODB_CONTEXT.traps[Rounded] = old_trap
 
         return items
