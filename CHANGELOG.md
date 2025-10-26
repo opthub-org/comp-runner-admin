@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.6](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.5...v0.4.6) (2025-10-26)
+
+
+### Bug Fixes
+
+* Roundedによるエラーを回避 ([c2db1e6](https://github.com/opthub-org/comp-runner-admin/commit/c2db1e6d3ec92ea022214989041b2d020333c261))
+
 ## [0.4.5](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.4...v0.4.5) (2025-10-26)
 
 
