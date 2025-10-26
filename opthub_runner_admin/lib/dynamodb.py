@@ -72,7 +72,7 @@ class DynamoDB:
         Returns:
             Any | None: The item.
         """
-        LOGGER.info("Getting item from DynamoDB with key: %s", primary_key_value)
+        LOGGER.info("Get item from DynamoDB with key: %s", primary_key_value)
         item: dict[str, Any] | None = self.table.get_item(Key=cast(dict[str, Any], primary_key_value)).get("Item")
         return item
 
