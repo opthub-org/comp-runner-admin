@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.4](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.3...v0.4.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* sleepの削除 ([1a29f0e](https://github.com/opthub-org/comp-runner-admin/commit/1a29f0ef71c64947628cc2dd71339e5b11b28b8d))
+
 ## [0.4.3](https://github.com/opthub-org/comp-runner-admin/compare/v0.4.2...v0.4.3) (2025-09-20)
 
 
