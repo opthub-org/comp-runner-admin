@@ -7,10 +7,10 @@ requires-python = ">=3.10"
 license = {text = "MIT"}
 keywords = ["opthub", "runner", "evaluator", "scorer"]
 authors = [
-  {email = "dev@opthub.ai", name = "Opthub Inc."}
+  {email = "competition@opthub.ai", name = "Opthub Inc."}
 ]
 maintainers = [
-  {email = "dev@opthub.ai", name = "Opthub Inc."}
+  {email = "competition@opthub.ai", name = "Opthub Inc."}
 ]
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -35,20 +35,20 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/opthub-org/opthub-runner-admin"
-Documentation = "https://github.com/opthub-org/opthub-runner-admin"
-Repository = "https://github.com/opthub-org/opthub-runner-admin"
+Homepage = "https://github.com/opthub-org/comp-runner-admin"
+Documentation = "https://github.com/opthub-org/comp-runner-admin"
+Repository = "https://github.com/opthub-org/comp-runner-admin"
 
 [tool.poetry]
 version = "0.0.0" # using poetry-dynamic-versioning
 name = "opthub_runner_admin"
 description = "Library for running OptHub problems and indicators."
-authors = ["Opthub Inc. <dev@opthub.ai>"]
+authors = ["Opthub Inc. <competition@opthub.ai>"]
 readme = "README.md"
 license = "MIT"
-homepage = "https://github.com/opthub-org/opthub-runner-admin"
-repository = "https://github.com/opthub-org/opthub-runner-admin"
-documentation = "https://github.com/opthub-org/opthub-runner-admin"
+homepage = "https://github.com/opthub-org/comp-runner-admin"
+repository = "https://github.com/opthub-org/comp-runner-admin"
+documentation = "https://github.com/opthub-org/comp-runner-admin"
 keywords = ["opthub", "runner", "evaluator", "scorer"]
 
 [tool.poetry-dynamic-versioning]

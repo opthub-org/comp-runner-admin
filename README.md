@@ -279,6 +279,6 @@ Once you have completed the above setup, you can use the `opthub-runner` command
 
 ## Contact
 
-If you have any questions or concerns, please feel free to contact us (Email: dev@opthub.ai).
+If you have any questions or concerns, please feel free to contact us (Email: competition@opthub.ai).
 
-<img src="https://opthub.ai/assets/images/logo.svg" width="200">
+<img src="https://competition.opthub.ai/assets/images/logo.svg" width="200">
